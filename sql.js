@@ -9,7 +9,7 @@ var config =
      server: 'edmacasqlserver.database.windows.net', // update me
      options: 
         {
-           database: 'somedb' //update me
+           database: 'somedb' //update  me
            , encrypt: true
         }
    }
