@@ -4,12 +4,12 @@ var Request = require('tedious').Request;
 // Create connection to database
 var config = 
    {
-     userName: 'someuser', // update me
-     password: 'somepassword', // update me
-     server: 'edmacasqlserver.database.windows.net', // update me
+     userName: 'antonio', // update me
+     password: 'asd123..', // update me
+     server: 'prueba1111.database.windows.net', // update me
      options: 
         {
-           database: 'somedb' //update me
+           database: 'prueba1111' //update me
            , encrypt: true
         }
    }
@@ -34,7 +34,7 @@ function queryDatabase()
 
        // Read all rows from table
      request = new Request(
-          "SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName FROM [SalesLT].[ProductCategory] pc JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid",
+          "SELECT * from dbo.Calle",
              function(err, rowCount, rows) 
                 {
                     console.log(rowCount + ' row(s) returned');
