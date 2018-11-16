@@ -24,8 +24,8 @@
       function initMap() {
         // Styles a map in night mode.
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40.674, lng: -73.945},
-          zoom: 12,
+          center: {lat: 43.453275 , lng: -3.841378},
+          zoom: 13,
           styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -107,9 +107,29 @@
             }
           ]
         });
+        var geocoder = new google.maps.Geocoder();
+
+google.maps.event.addListener(map, 'click', function(event) {
+  geocoder.geocode({
+    'latLng': event.latLng
+  }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[0]) {
+        var calle = (results[0].formatted_address + '');
+        calle = calle.substr(0, calle.indexOf(','));
+        alert(calle);
+        
+
       }
+    }
+  });
+});
+      }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcMnAECfdnmN68jL7RTHGvuIs9tLSKjNs&callback=initMap"
-    async defer></script>
+    async defer>
+    </script>
+
   </body>
 </html>
