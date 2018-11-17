@@ -94,7 +94,7 @@
             <h3>Foto de última detección</h3>
         </div>
         <div class="column">
-            <img src="images/negro.jpeg" alt="CalleConcreta">
+            <img id='mini_mapa' src="images/negro.jpeg" alt="CalleConcreta">
             <h3>Mapa de la calle</h3>
         </div>
     </div>
@@ -140,6 +140,7 @@
                 document.getElementById("IntensidadIluminacion").innerHTML = jsons[i].ultima_actividad;
                 document.getElementById("CochesHora").innerHTML = jsons[i].media_trafico;
                 document.getElementById("imagen_calle").src = images[i];
+                document.getElementById("mini_mapa").src = "images/inicial.jpg";
                 document.getElementById("IntensidadMedia").innerHTML = "40%";
                 if (i < 3){
                     i++;
