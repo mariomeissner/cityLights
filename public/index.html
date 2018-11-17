@@ -58,7 +58,7 @@
         <!-- /.container -->
     </nav>
 
-    <div id="map" style="height: -webkit-fill-available; width: 50%;"></div>
+    <div id="map"></div>
     <script>
         function initMap() {
             // Styles a map in night mode.
@@ -157,8 +157,6 @@
                             var calle = (results[0].formatted_address + '');
                             calle = calle.substr(0, calle.indexOf(','));
                             alert(calle);
-
-
                         }
                     }
                 });
@@ -166,6 +164,36 @@
         }
 
     </script>
+
+<table id="information">
+    <tr>
+      <th>Nombre de la calle</th>
+    <tr>
+      <td>Intensidad Iluminación</td>
+      <td></td>
+    </tr>
+    <tr>
+        <td>Intensidad Media Hoy</td>
+        <td></td>
+      </tr>
+    <tr>
+      <td>Watts / hora</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Coches / hora</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Coches en última hora</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Último coche</td>
+      <td></td>
+    </tr>
+  </table>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcMnAECfdnmN68jL7RTHGvuIs9tLSKjNs&callback=initMap"
         async defer>
         </script>
