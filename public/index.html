@@ -85,6 +85,10 @@
             <td>Coches en última hora</td>
             <td id="CochesUltimaHora"></td>
         </tr>
+        <tr>
+            <td>Hora última actividad</td>
+            <td id="HoraUltimaActividad"></td>
+        </tr>
 
     </table>
 
@@ -137,7 +141,7 @@
                 document.getElementById("IntensidadIluminacion").innerHTML = jsons[i].luminosidad_actual;
                 document.getElementById("WattsHora").innerHTML = (parseInt(jsons[i].luminosidad_actual) * 50);
                 document.getElementById("CochesUltimaHora").innerHTML = jsons[i].trafico_ultima_hora;
-                document.getElementById("IntensidadIluminacion").innerHTML = jsons[i].ultima_actividad;
+                document.getElementById("HoraUltimaActividad").innerHTML = jsons[i].ultima_actividad;
                 document.getElementById("CochesHora").innerHTML = jsons[i].media_trafico;
                 document.getElementById("imagen_calle").src = images[i];
                 document.getElementById("mini_mapa").src = "images/inicial.jpg";
