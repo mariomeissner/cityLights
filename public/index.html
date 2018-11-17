@@ -10,6 +10,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -59,156 +61,198 @@
     </nav>
 
     <div id="map"></div>
-    <script>
-        function initMap() {
-            // Styles a map in night mode.
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 43.453275, lng: -3.841378 },
-                zoom: 13,
-                styles: [
-                    { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-                    { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-                    { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-                    {
-                        featureType: 'administrative.locality',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#d59563' }]
-                    },
-                    {
-                        featureType: 'poi',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#d59563' }]
-                    },
-                    {
-                        featureType: 'poi.park',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#263c3f' }]
-                    },
-                    {
-                        featureType: 'poi.park',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#6b9a76' }]
-                    },
-                    {
-                        featureType: 'road',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#38414e' }]
-                    },
-                    {
-                        featureType: 'road',
-                        elementType: 'geometry.stroke',
-                        stylers: [{ color: '#212a37' }]
-                    },
-                    {
-                        featureType: 'road',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#9ca5b3' }]
-                    },
-                    {
-                        featureType: 'road.highway',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#746855' }]
-                    },
-                    {
-                        featureType: 'road.highway',
-                        elementType: 'geometry.stroke',
-                        stylers: [{ color: '#1f2835' }]
-                    },
-                    {
-                        featureType: 'road.highway',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#f3d19c' }]
-                    },
-                    {
-                        featureType: 'transit',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#2f3948' }]
-                    },
-                    {
-                        featureType: 'transit.station',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#d59563' }]
-                    },
-                    {
-                        featureType: 'water',
-                        elementType: 'geometry',
-                        stylers: [{ color: '#17263c' }]
-                    },
-                    {
-                        featureType: 'water',
-                        elementType: 'labels.text.fill',
-                        stylers: [{ color: '#515c6d' }]
-                    },
-                    {
-                        featureType: 'water',
-                        elementType: 'labels.text.stroke',
-                        stylers: [{ color: '#17263c' }]
-                    }
-                ]
-            });
-            var geocoder = new google.maps.Geocoder();
 
-            google.maps.event.addListener(map, 'click', function (event) {
-                geocoder.geocode({
-                    'latLng': event.latLng
-                }, function (results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        if (results[0]) {
-                            var calle = (results[0].formatted_address + '');
-                            calle = calle.substr(0, calle.indexOf(','));
-                            alert(calle);
-                            //meter datos a la tabla
-                           // $.get('https://citylightsweb.azurewebsites.net/request', function(json){
-                           //     document.getElementById();
-                           // })
-                            
+    <table id="information">
+        <tr>
+            <th id="NombreCalle">Nombre de la calle</th>
+        <tr>
+            <td>Intensidad Iluminación</td>
+            <td id="IntensidadIluminacion"></td>
+        </tr>
+        <tr>
+            <td>Intensidad Media Hoy</td>
+            <td id="IntensidadMedia"></td>
+        </tr>
+        <tr>
+            <td>Watts / hora</td>
+            <td id="WattsHora"></td>
+        </tr>
+        <tr>
+            <td>Coches / hora</td>
+            <td id="CochesHora"></td>
+        </tr>
+        <tr>
+            <td>Coches en última hora</td>
+            <td id="CochesUltimaHora"></td>
+        </tr>
 
-                        }
-                    }
-                });
-            });
-        }
+    </table>
 
-    </script>
-
-<table id="information">
-    <tr>
-      <th>Nombre de la calle</th>
-    <tr>
-      <td>Intensidad Iluminación</td>
-      <td id="IntensidadIluminacion"></td>
-    </tr>
-    <tr>
-        <td>Intensidad Media Hoy</td>
-        <td id="IntensidadMedia"></td>
-      </tr>
-    <tr>
-      <td>Watts / hora</td>
-      <td id="WattsHora"></td>
-    </tr>
-    <tr>
-      <td>Coches / hora</td>
-      <td id="CochesHora"></td>
-    </tr>
-    <tr>
-      <td>Coches en última hora</td>
-      <td id="CochesUltimaHora"></td>
-    </tr>
-    <tr>
-      <td>Último coche</td>
-      <td id="HoraUltimoCoche"></td>
-    </tr>
-    <tr>
-        <td>Imagen</td>
-        <td id="ImagenUltimoCoche"></td>
-      </tr>
-    
-  </table>
+    <div class="row">
+        <div class="column">
+            <img id='imagen_calle' src="images/negro.jpeg" style='width: 350px; height: 312px;' alt="UltimoCoche">
+            <h3>Foto de última detección</h3>
+        </div>
+        <div class="column">
+            <img src="images/negro.jpeg" alt="CalleConcreta">
+            <h3>Mapa de la calle</h3>
+        </div>
+    </div>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcMnAECfdnmN68jL7RTHGvuIs9tLSKjNs&callback=initMap"
         async defer>
         </script>
     <script src="main.js"></script>
+    <script>
+        var jsons = [
+                {
+                    "media_trafico": 10,
+                    "luminosidad_actual": 20,
+                    "trafico_ultima_hora": 5,
+                    "ultima_actividad": "23:04"
+                },
+                {
+                    "media_trafico": 10,
+                    "luminosidad_actual": 20,
+                    "trafico_ultima_hora": 5,
+                    "ultima_actividad": "23:04"
+                },
+                {
+                    "media_trafico": 11,
+                    "luminosidad_actual": 100,
+                    "trafico_ultima_hora": 5,
+                    "ultima_actividad": "23:34"
+                },
+            ];
+
+            var images = [
+                "images/calle1.jpeg",
+                "images/calle2.jpeg",
+                "images/calle3.jpeg",
+            ];
+            
+            function setValues(i, jsons, images) {
+                console.log("recibido el json");
+                console.log(jsons[i]);
+                document.getElementById("IntensidadIluminacion").innerHTML = jsons[i].luminosidad_actual;
+                document.getElementById("WattsHora").innerHTML = (parseInt(jsons[i].luminosidad_actual) * 50);
+                document.getElementById("CochesUltimaHora").innerHTML = jsons[i].trafico_ultima_hora;
+                document.getElementById("IntensidadIluminacion").innerHTML = jsons[i].ultima_actividad;
+                document.getElementById("CochesHora").innerHTML = jsons[i].media_trafico;
+                document.getElementById("imagen_calle").src = images[i];
+                document.getElementById("IntensidadMedia").innerHTML = "40%";
+                if (i < 3){
+                    i++;
+                    window.setTimeout(setValues, 3000, i, jsons, images)
+                }
+            }
+            function initMap() {
+                // Styles a map in night mode.
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 43.453275, lng: -3.841378 },
+                    zoom: 13,
+                    styles: [
+                        { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+                        { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+                        { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+                        {
+                            featureType: 'administrative.locality',
+                            elementType: 'labels.text.fill',
+                            stylers: [{ color: '#d59563' }]
+                        },
+                        {
+                            featureType: 'poi',
+                            elementType: 'labels.text.fill',
+                            stylers: [{ color: '#d59563' }]
+                        },
+                        {
+                            featureType: 'poi.park',
+                            elementType: 'geometry',
+                            stylers: [{ color: '#263c3f' }]
+                        },
+                        {
+                            featureType: 'poi.park',
+                            elementType: 'labels.text.fill',
+                            stylers: [{ color: '#6b9a76' }]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'geometry',
+                            stylers: [{ color: '#38414e' }]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'geometry.stroke',
+                            stylers: [{ color: '#212a37' }]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'labels.text.fill',
+                            stylers: [{ color: '#9ca5b3' }]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'geometry',
+                            stylers: [{ color: '#746855' }]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'geometry.stroke',
+                            stylers: [{ color: '#1f2835' }]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'labels.text.fill',
+                            stylers: [{ color: '#f3d19c' }]
+                        },
+                        {
+                            featureType: 'transit',
+                            elementType: 'geometry',
+                            stylers: [{ color: '#2f3948' }]
+                        },
+                        {
+                            featureType: 'transit.station',
+                            elementType: 'labels.text.fill',
+                            stylers: [{ color: '#d59563' }]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'geometry',
+                            stylers: [{ color: '#17263c' }]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'labels.text.fill',
+                            stylers: [{ color: '#515c6d' }]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'labels.text.stroke',
+                            stylers: [{ color: '#17263c' }]
+                        }
+                    ]
+                });
+                var geocoder = new google.maps.Geocoder();
+    
+                google.maps.event.addListener(map, 'click', function (event) {
+                    geocoder.geocode({
+                        'latLng': event.latLng
+                    }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                var calle = (results[0].formatted_address + '');
+                                calle = calle.substr(0, calle.indexOf(','));
+                                document.getElementById('NombreCalle').innerHTML = calle;
+                                //meter datos a la tabla
+                                uri = encodeURI('street_info?calle=' + calle)
+                                //$.get(uri, setValues(json));
+                            }
+                        }
+                    });
+                    setValues(0, jsons, images)
+                });
+            }
+        </script>
 </body>
 
 </html>
