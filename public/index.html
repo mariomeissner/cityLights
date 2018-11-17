@@ -157,6 +157,12 @@
                             var calle = (results[0].formatted_address + '');
                             calle = calle.substr(0, calle.indexOf(','));
                             alert(calle);
+                            //meter datos a la tabla
+                           // $.get('https://citylightsweb.azurewebsites.net/request', function(json){
+                           //     document.getElementById();
+                           // })
+                            
+
                         }
                     }
                 });
@@ -170,28 +176,33 @@
       <th>Nombre de la calle</th>
     <tr>
       <td>Intensidad Iluminación</td>
-      <td></td>
+      <td id="IntensidadIluminacion"></td>
     </tr>
     <tr>
         <td>Intensidad Media Hoy</td>
-        <td></td>
+        <td id="IntensidadMedia"></td>
       </tr>
     <tr>
       <td>Watts / hora</td>
-      <td></td>
+      <td id="WattsHora"></td>
     </tr>
     <tr>
       <td>Coches / hora</td>
-      <td></td>
+      <td id="CochesHora"></td>
     </tr>
     <tr>
       <td>Coches en última hora</td>
-      <td></td>
+      <td id="CochesUltimaHora"></td>
     </tr>
     <tr>
       <td>Último coche</td>
-      <td></td>
+      <td id="HoraUltimoCoche"></td>
     </tr>
+    <tr>
+        <td>Imagen</td>
+        <td id="ImagenUltimoCoche"></td>
+      </tr>
+    
   </table>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcMnAECfdnmN68jL7RTHGvuIs9tLSKjNs&callback=initMap"

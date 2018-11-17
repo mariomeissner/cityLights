@@ -1,2 +1,52 @@
-mapsbox = document.getElementById('maps-box');
-//mapsbox.innerHTML='<object type="text/html" data="map.html" ></object>';
+var Connection = require('tedious').Connection;
+var Request = require('tedious').Request;
+
+// Create connection to database
+var config = 
+   {
+     userName: 'antonio', // update me
+     password: 'asd123..', // update me
+     server: 'prueba1111.database.windows.net', // update me
+     options: 
+        {
+           database: 'prueba1111' //update me
+           , encrypt: true
+        }
+   }
+var connection = new Connection(config);
+
+// Attempt to connect and execute queries if connection goes through
+connection.on('connect', function(err) 
+   {
+     if (err) 
+       {
+          console.log(err)
+       }
+    else
+       {
+           queryDatabase()
+       }
+   }
+ );
+
+function queryDBIluminacion(calle)
+   { console.log('Reading rows from the Table...');
+
+       // Read all rows from table
+     request = new Request(
+        "select TOP 1 luminosidad from Iluminacion where nombreCalle = '"+calle+"' order by fecha DESC",
+             function(err, rowCount, rows) 
+                {
+                    console.log(rowCount + ' row(s) returned');
+                    process.exit();
+                }
+            );
+
+     request.on('row', function(columns) {
+        columns.forEach(function(column) {
+            console.log("%s\t%s", column.metadata.colName, column.value);
+         });
+             });
+     connection.execSql(request);
+   }
+
